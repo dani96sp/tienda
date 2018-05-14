@@ -48,10 +48,9 @@ function mostrarEmpleados() {
 }
 
 //Mostramos los artículos
-function mostrarArticulos() {
+function mostrarArticulos(&$orden) {
 	$num_filas = 5;
-	//TODO intentar reemplazar global
-	global $orden;
+
 	if (isset($_GET["desplazamiento"]))
 		$desplazamiento = $_GET["desplazamiento"];
 	else $desplazamiento = 0;

@@ -3,10 +3,10 @@ $titulo_pagina = "Compra realizada";
 $descripcion = "compra realizada";
 $keywords = "compra, realizada, palabras clave, keywords";
 
-//Inluimos las funciones
+//Incluimos las funciones
 require("funciones.php");
 
-//Inluimos seguridad.php
+//Incluimos seguridad.php
 require("seguridad.php");
 
 //Iniciamos con la variable del número de orden en 0

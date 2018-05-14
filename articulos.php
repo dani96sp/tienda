@@ -7,10 +7,13 @@ $keywords = "articulos, palabras clave, keywords";
 //para que muestre los artículos de 5 en 5
 $num_filas = 5;
 
-//Si no se ha especificado un orden le damos
-//por defecto el orden 'precio'
-if(!isset($orden)){
-	$orden ='precio';
+
+//Si se ha espeficiado un orden lo recogemos en la variable $orden
+if (isset($_GET['orden'])) {
+    $orden = $_GET['orden'];
+} else {
+    //Si no se ha especificado un orden le damos por defecto el orden 'precio'
+    $orden ='precio';
 }
 
 //Si no se ha especificado un desplazamiento le damos
@@ -24,10 +27,7 @@ $prevpag = $desplazamiento / 5;
 $currpag = $desplazamiento / 5 + 1;
 $nextpag = $desplazamiento / 5 + 2;
 
-//Si se ha espeficiado un orden lo recogemos en la variable $orden
-if (isset($_GET['orden'])) {
-	$orden = $_GET['orden'];
-}
+
 
 //Incluimos las funciones
 include("funciones.php");
@@ -61,7 +61,7 @@ include("cabecera.php");
 <?php
 //Llamamos a la función mostrarArticulos()
 //para que monte la tabla con los artículos
-mostrarArticulos();
+mostrarArticulos($orden);
 echo "<br/>";
 echo "<br/>";
 
