@@ -122,16 +122,18 @@ function mostrarCompras() {
 	$con->query("SET NAMES 'utf8'");
 
 	//TODO intentar reemplazar global
-	global $total;
-	$total = '0';
+    //global $preciototal;
+	$preciototal = '0';
 	if ($result2 = mysqli_query($con, $sql2)) {
-		while ($row2 = mysqli_fetch_assoc($result2)) {
-			$precio = $row2["precio"];
-			$total = $total + $precio;
-			printf ("%s %s %s %s %s %s %s", "</td></tr><tr><td>" . $row2["numpedido"], "</td><td>" . $row2["numorden"], "</td><td>" . $row2["fecha"], "</td><td>" . $row2["nombre"],  "</td><td>" . $row2["cantidad"],  "</td><td>" . $row2["precio"] . "€",  "</td><td>" . $row2["estado"]);
-		}
-		mysqli_free_result($result2);
-	}
+        while ($row2 = mysqli_fetch_assoc($result2)) {
+            $precio = $row2["precio"];
+            $preciototal = $preciototal + $precio;
+            printf("%s %s %s %s %s %s %s", "</td></tr><tr><td>" . $row2["numpedido"],
+                "</td><td>" . $row2["numorden"], "</td><td>" . $row2["fecha"], "</td><td>" . $row2["nombre"],
+                "</td><td>" . $row2["cantidad"], "</td><td>" . $row2["precio"] . "€", "</td><td>" . $row2["estado"]);
+        }
+        mysqli_free_result($result2);
+    }
 	mysqli_close($con);
 	echo "</td></tr></table><br>";
 	//desplazamiento
@@ -153,6 +155,7 @@ function mostrarCompras() {
 	} else {
 		echo "Página $currpag";
 	}
+	return $preciototal;
 }
 
 //Mostramos todos los pedidos

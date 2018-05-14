@@ -23,10 +23,10 @@ include("cabecera.php");
 <?php
 //Llamamos a la función mostrarCompras()
 //para que monte la tabla con los artículos
-mostrarCompras();
+$preciototal = mostrarCompras();
 
 //Mostramos el total de la página
-echo "<h1>TOTAL: $total €</h1>";
+echo "<h1>TOTAL: $preciototal €</h1>";
 
 //Por último incluimos el pie
 include("pie.php");
