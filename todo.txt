@@ -1,0 +1,53 @@
+﻿- UNDEFINED VARIABLE CATEGORIA articulos.php
+
+
+- Llamar siempre a index.php pasándole parámetros y dichos parámetros indican que página cargar en la zona principal de la web
+UTILIZANDO SWITCH:
+switch ($i) {
+    case "manzana":
+        echo "i es una manzana";
+        break;
+    case "barra":
+        echo "i es una barra";
+        break;
+    case "pastel":
+        echo "i es un pastel";
+        break;
+}
+
+- "Esta página te ha redirigido demasiadas veces."
+ERR_TOO_MANY_REDIRECTS
+
+- Menos variables globales y más pasar datos a las funciones y devolver lo que haga falta.
+
+- Diseño web..
+
++ Ver mis pedidos: mostrar pedidos sin detalle y al pulsar en el ver el detalle. Además mostrarlo por pedidos y no por artículos.
+
++ Pagina administrar categorias para eliminar o añadir categorias
+
++ Mantenimiento en la web de categorías y subcategorías.***
+
++ Mostrar importe que se lleva gastado en el carrito
+Implementado
+
++ Encriptar contraseñas
+Implementado
+contra123 / cliente123 / admin123
+
++ Codificación de caracteres
+Implementado
+
++ Artículos bajas lógicas..
+Implementado desde un principio con stock.
+
+
+- Todo quedaría mejor, en vez de tener muchísimas páginas que carguen la cabecera, menu..etc,
+llamar siempre a la misma (index.php) por ejemplo, pasándole parámetros,
+y estos parámetro te indicarán que página hay que cargar en la zona principal de la web.
+Mucho mejor estructurado tu código,
+y de paso te evitarais esos "saltos" que se ven a veces en el diseño al cargar otra página.
+
+- Me ha dado varios fallos de "esta página te ha redirigido demasiadas veces".
+Cuidado con estos bucles, dan problemas si no se controlan bien.
+Supongo que te habrá pasado alguna vez.

@@ -1,0 +1,172 @@
+BODY {
+	background : #C0D9D9;
+	font : 8pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color : #666666;
+	margin : 20px 0px 20px 0px;
+	text-align: center;
+}
+A, A:ACTIVE, A:FOCUS, A:LINK, A:VISITED {
+	color : #3F7DE3;
+}
+A:HOVER {
+	color: #378237;
+}
+INPUT {
+	font-size : 8pt;
+}
+H1{
+	font-size: 12pt;
+}
+
+table tr td {
+    border: 1px solid black;
+    font-size:8pt;
+}
+
+#borde{
+	border: 2px solid #cccccc;
+	text-align: left;
+	width: 1200px;
+	/*840*/
+	margin: 0 auto;
+}
+#contenedor{
+	text-align: left;
+	width: 1200px;
+	/*840*/
+	background-color : #ffffff;
+}
+#cabecera{
+	height : 106px;
+	width: 1200px;
+	/*840*/
+}
+#imgcabecera{
+	float:left;
+}
+#navegador{
+	background : #F5F4C3 url(img/fondonav.gif);
+	padding : 3px 10px 5px  140px;
+	border-top : 1px solid #cccccc;
+	border-bottom : 1px solid #cccccc;
+}
+#cuerpo{
+	float:left;
+	width:840px;
+	/*480*/
+	margin-left: 8px;
+	padding: 12px 0px 10px 0px;
+	background-color : #ffffff;
+}
+#navabajo{
+	font-weight : bold;
+}
+#lateral{
+	width: 200px;
+	float:right;
+	background-color: #EBF2FE;
+	border-bottom : 1px solid #cccccc;
+	border-left : 1px solid #cccccc;
+}
+#lateral2{
+	width: 130px;
+	float:left;
+	background-color: #EBF2FE;
+	border-bottom : 1px solid #cccccc;
+	border-right : 1px solid #cccccc;
+}
+#campotexto{
+	float: left;
+}
+#campotexto input{
+	width:120px;
+	height: 18px;
+}
+#fbuscar{
+	float:right;
+}
+#fbuscar form{
+	margin-bottom : 0px;
+	margin-top : 0px;
+}
+#botonbuscar {
+	border : 0px none;
+	float:right;
+}
+#botonbuscar input{
+	width:30px;
+	height: 18px;
+	padding-top: -2px;
+}
+#otras ul{
+	margin : 5px 10px 0px 0px;
+	list-style: none;
+	padding: 0px 0px 0px 4px;
+}
+#otras li{
+	padding-left: 14px; 
+	background: transparent url("img/bullet.gif") 0 2px no-repeat;
+	margin-bottom: 10px;	
+}
+#pie{
+	clear : both;
+	color : #cccccc;
+	text-align : right;
+	margin : 10px 10px 0px 10px;
+	padding-bottom:10px;
+}
+
+
+#incorrecto {
+    background-color: Red;
+    color: Gainsboro;
+}
+
+#titulo {
+    background-color: orange;
+}
+
+#editar {
+    background-color: SpringGreen;
+}
+
+#borrar {
+    background-color: red;
+}
+
+#incorrecto {
+    background-color: red;
+}
+
+#correcto {
+
+}
+
+.categorias {
+	float:right;
+	padding-right:50px;
+}
+
+.cuerpolateral{
+	padding: 5px 4px 13px 10px;
+}
+
+.titlat{
+	background-color:#68729E;
+	color:#ffffff;
+	font-size:8pt;
+	text-transform : uppercase;
+	padding: 7px 3px 7px 8px;
+	margin: 0px 0px 8px 0px;
+	font-weight : normal;
+	letter-spacing : 2px;
+}
+A.enlacenav, A.enlacenav:VISITED, A.enlacenav:ACTIVE, A.enlacenav:FOCUS, A.enlacenav:LINK{
+	color: #494E6B;
+}
+A.enlacenav:HOVER{
+	color: #3F7DE3;
+}
+.radio{
+	clear : both;
+}
