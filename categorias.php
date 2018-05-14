@@ -30,12 +30,12 @@ $prevpag = $desplazamiento / 5;
 $currpag = $desplazamiento / 5 + 1;
 $nextpag = $desplazamiento / 5 + 2;
 
-//Si se ha espeficiado un orden lo recogemos en la variable $orden
+//Si se ha especificado un orden lo recogemos en la variable $orden
 if (isset($_GET['orden'])) {
 	$orden = $_GET['orden'];
 }
 
-//Inluimos las funciones
+//Incluimos las funciones
 include("funciones.php");
 
 //Se incluye la cabecera y comienza el cuerpo de la página a continuación
@@ -44,7 +44,7 @@ include("cabecera.php");
 	<h1><?php echo parametro_plantilla("titulo_pagina"); echo " - Página $currpag"?></h1>
 <table>
 <tr id='titulo'>
-<td><b>Imágen</b></td>
+<td><b>Imagen</b></td>
 <td><b>Nombre de Artículo</b></td>
 <td><b>Descripción</b></td>
 <td><b>Precio</b></td>
@@ -63,7 +63,7 @@ include("cabecera.php");
 <form name="carrito" id="carrito" action="compra.php" method="POST">
 <?php
 //Llamada a la función mostrarArticulosPorCategoria()
-mostrarArticulosPorCategoria();
+mostrarArticulosPorCategoria($orden, $categoria);
 echo "<br/></form>";
 echo "<br/><br/>";
 

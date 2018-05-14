@@ -121,8 +121,6 @@ function mostrarCompras() {
 	//acentos
 	$con->query("SET NAMES 'utf8'");
 
-	//TODO intentar reemplazar global
-    //global $preciototal;
 	$preciototal = '0';
 	if ($result2 = mysqli_query($con, $sql2)) {
         while ($row2 = mysqli_fetch_assoc($result2)) {
@@ -255,13 +253,9 @@ function mostrarCategoriasArticuloModificado($articulo) {
 }
 
 //Mostramos los artículos según la categoría
-function mostrarArticulosPorCategoria() {
+function mostrarArticulosPorCategoria(&$orden, &$categoria) {
 	$num_filas = 5;
 
-    //TODO intentar reemplazar global
-	global $orden;
-    //TODO intentar reemplazar global
-	global $categoria;
 	if (isset($_GET["desplazamiento"]))
 		$desplazamiento = $_GET["desplazamiento"];
 	else $desplazamiento = 0;

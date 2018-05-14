@@ -8,7 +8,7 @@ $keywords = "ofertas, articulos, palabras clave, keywords";
 $num_filas = 5;
 
 
-//Si se ha espeficiado un orden lo recogemos en la variable $orden
+//Si se ha especificado un orden lo recogemos en la variable $orden
 if (isset($_GET['orden'])) {
     $orden = $_GET['orden'];
 } else {
@@ -57,7 +57,7 @@ include("cabecera.php");
 </form>
 <form name="carrito" id="carrito" action="compra.php" method="POST">
 <?php
-//Llamada a la función mostrarArticulosPorCategoria()
+//Llamada a la función mostrarArticulosOferta()
 mostrarArticulosOferta($orden);
 echo "<br/></form>";
 echo "<br/><br/>";
