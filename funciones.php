@@ -299,7 +299,7 @@ function mostrarArticulosOferta() {
 	global $orden;
     //TODO intentar reemplazar global
 	global $categoria;
-	
+
 	if (isset($_GET["desplazamiento"]))
 		$desplazamiento = $_GET["desplazamiento"];
 	else $desplazamiento = 0;
