@@ -292,14 +292,8 @@ function mostrarArticulosPorCategoria() {
 
 
 //Mostramos los artículos en oferta
-function mostrarArticulosOferta() {
+function mostrarArticulosOferta(&$orden) {
 	$num_filas = 5;
-
-    //TODO intentar reemplazar global
-	global $orden;
-
-    //TODO intentar reemplazar global
-	global $categoria;
 
 	if (isset($_GET["desplazamiento"]))
 		$desplazamiento = $_GET["desplazamiento"];

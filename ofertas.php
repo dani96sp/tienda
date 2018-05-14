@@ -7,11 +7,15 @@ $keywords = "ofertas, articulos, palabras clave, keywords";
 //para que muestre los artículos de 5 en 5
 $num_filas = 5;
 
-//Si no se ha especificado un orden le damos
-//por defecto el orden 'precio'
-if(!isset($orden)){
-	$orden ='precio';
+
+//Si se ha espeficiado un orden lo recogemos en la variable $orden
+if (isset($_GET['orden'])) {
+    $orden = $_GET['orden'];
+} else {
+    //Si no se ha especificado un orden le damos por defecto el orden 'precio'
+    $orden ='precio';
 }
+
 
 //Si no se ha especificado un desplazamiento le damos
 //por defecto el desplazamiento 0
@@ -24,10 +28,7 @@ $prevpag = $desplazamiento / 5;
 $currpag = $desplazamiento / 5 + 1;
 $nextpag = $desplazamiento / 5 + 2;
 
-//Si se ha espeficiado un orden lo recogemos en la variable $orden
-if (isset($_GET['orden'])) {
-	$orden = $_GET['orden'];
-}
+
 
 //Inluimos las funciones
 include("funciones.php");
@@ -57,7 +58,7 @@ include("cabecera.php");
 <form name="carrito" id="carrito" action="compra.php" method="POST">
 <?php
 //Llamada a la función mostrarArticulosPorCategoria()
-mostrarArticulosOferta();
+mostrarArticulosOferta($orden);
 echo "<br/></form>";
 echo "<br/><br/>";
 
