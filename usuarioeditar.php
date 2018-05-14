@@ -9,7 +9,8 @@ include("funciones.php");
 require("seguridad.php");
 
 $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-$acentos = $con->query("SET NAMES 'utf8'");
+//acentos
+$con->query("SET NAMES 'utf8'");
 
 $username = $_SESSION['login_user'];
 $sql = "SELECT * FROM usuarios WHERE username = '$username'";

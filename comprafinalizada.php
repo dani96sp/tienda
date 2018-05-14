@@ -24,7 +24,6 @@ $sql = "INSERT INTO pedidos (numpedido, cliente, fecha, estado) VALUES ('$numped
 mysqli_query($con, $sql);
 foreach ($_COOKIE["cesta_de_".$username] as $idarticulo => $unidades) {
 	$numorden += 1;
-	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$articulo = mysqli_query($con, "select nombre from articulos WHERE id = '$idarticulo'");
 	$row = mysqli_fetch_assoc($articulo);
 	$nom_cookie="cesta_de_".$username;

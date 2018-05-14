@@ -24,9 +24,10 @@ if($_GET){
 	}else{
 		//Si hay información para buscar, abrimos la conexión
 		$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-		$acentos = $con->query("SET NAMES 'utf8'");
+		//acentos
+        $con->query("SET NAMES 'utf8'");
 
-		//Contulta para la base de datos
+		//Consulta para la base de datos
 		$sql = "SELECT * FROM articulos WHERE stock = 'si' AND nombre LIKE '%" .$busqueda. "%' ORDER BY $orden";
 
 		//Ejecución de la consulta

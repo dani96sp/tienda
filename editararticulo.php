@@ -9,7 +9,8 @@ include("seguridad.php");
 //Se incluye la cabecera y comienza el cuerpo de la página a continuación
 include("cabecera.php");
 $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-$acentos = $con->query("SET NAMES 'utf8'");
+//acentos
+$con->query("SET NAMES 'utf8'");
 
 //Guardamos el usuario
 $username = $_SESSION['login_user'];

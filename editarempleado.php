@@ -11,7 +11,8 @@ include("cabecera.php");
 
 
 $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-$acentos = $con->query("SET NAMES 'utf8'");
+//acentos
+$con->query("SET NAMES 'utf8'");
 
 $cNombre = "correcto";
 $cTelefono = "correcto";

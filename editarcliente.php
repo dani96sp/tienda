@@ -3,14 +3,15 @@ $titulo_pagina = "Editar Cliente";
 $descripcion = "editar cliente";
 $keywords = "editar, cliente, palabras clave, keywords";
 
-//Inluimos las funciones
+//Incluimos las funciones
 include("funciones.php");
 include("seguridad.php");
 //Se incluye la cabecera y comienza el cuerpo de la página a continuación
 include("cabecera.php");
 
 $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-$acentos = $con->query("SET NAMES 'utf8'");
+//acentos
+$con->query("SET NAMES 'utf8'");
 
 $cNombre = "correcto";
 $cTelefono = "correcto";
@@ -83,8 +84,9 @@ if(isset($_REQUEST['enviar'])){
 	}
 }
 
-$query = mysql_query("select tipo from usuarios where username='$_SESSION[login_user]'", $connection);
-$tipo = mysql_result($query, 0);
+$sql = "select tipo from usuarios where username='$_SESSION[login_user]'";
+$result = mysqli_query($con, $sql);
+$tipo = mysql_result($result, 0);
 
 mysqli_close($con);
 ?>

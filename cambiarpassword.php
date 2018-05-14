@@ -10,7 +10,8 @@ require("seguridad.php");
 include("cabecera.php");
 
 $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-$acentos = $con->query("SET NAMES 'utf8'");
+//acentos
+$con->query("SET NAMES 'utf8'");
 
 //Sacamos el usuario y lo guardamos
 $username = $_SESSION['login_user'];
@@ -32,17 +33,15 @@ if(isset($_REQUEST['enviar'])){
 	//Si las 2 contraseñas actuales coinciden procedemos a comprobarla
 	if ($vpassword1 == $vpassword2) {
 		$password = $vpassword1;
-		$connection = @mysql_connect(HOSTNAME, USER_DB, PASSWORD_DB);
-		mysql_query("SET NAMES 'utf8'");
-		// To protect MySQL injection for Security purpose
-		$password = stripslashes($password);
-		$password = mysql_real_escape_string($password);
-		// Selecting Database
-		$db = mysql_select_db(DATABASE, $connection);
-		// SQL query to fetch information of registerd users and finds user match.
 
-		$query = mysql_query("select password from usuarios WHERE username='$username'", $connection);
-		$passdb = mysql_result($query, 0);
+        // To protect MySQL injection for Security purpose
+		$password = stripslashes($password);
+		$password = mysqli_real_escape_string($con, $password);
+
+		// SQL query to fetch information of registerd users and finds user match.
+		$sql = "select password from usuarios WHERE username='$username'";
+        $result = mysqli_query($con, $sql);
+        $passdb = mysql_result($query, 0);
 		if (password_verify($password, $passdb)) {
 			//Una vez comprobada que la contraseña actual es correcta
 			//pasamos a comprobar que la nueva cumpla los requisitos

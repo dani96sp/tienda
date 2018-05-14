@@ -20,5 +20,5 @@
 </body>
 </html>
 <?php
-mysql_close($connection); // Closing Connection
+mysqli_close($con); // Closing Connection
 ?>

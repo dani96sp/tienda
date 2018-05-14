@@ -31,4 +31,3 @@ if($_REQUEST[$ref] == 'Comprar' || $_REQUEST[$ref] == '+') {
 
 header("Location: ". $_SERVER['HTTP_REFERER']);
 
-?>
