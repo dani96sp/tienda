@@ -297,6 +297,7 @@ function mostrarArticulosOferta() {
 
     //TODO intentar reemplazar global
 	global $orden;
+
     //TODO intentar reemplazar global
 	global $categoria;
 
