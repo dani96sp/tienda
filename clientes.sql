@@ -40,10 +40,13 @@ INSERT INTO `articulos` (`nombre`, `descripcion`, `precio`, `oferta`, `stock`) V
 CREATE TABLE pedidos (
 numpedido INT AUTO_INCREMENT PRIMARY KEY,
 cliente CHAR(30) REFERENCES usuarios(username),
-fecha TIMESTAMP NOT NULL
+fecha TIMESTAMP NOT NULL,
+estado ENUM('En espera', 'Confirmado', 'Enviado', 'Recibido') NOT NULL
 );
 
-INSERT INTO pedidos (cliente, fecha) VALUES ('juanjoseml','2017-03-25 15:53:20'),('cliente','2017-04-20 20:06:50'),('cliente','2017-05-10 12:33:00');
+INSERT INTO pedidos (cliente, fecha, estado) VALUES ('juanjoseml','2017-03-25 15:53:20', 'En espera'),('cliente','2017-04-20 20:06:50', 'Confirmado'),('cliente','2017-05-10 12:33:00', 'Enviado');
+
+ALTER TABLE `pedidos` CHANGE `fecha` `fecha` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
 CREATE TABLE lineapedido (
 numpedido INT REFERENCES pedidos(numpedido),

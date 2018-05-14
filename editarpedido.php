@@ -45,14 +45,6 @@ if ($result = mysqli_query($con, $sql)) {
 <legend>Datos del pedido</legend>
 <form name="formulario" id="formulario" action="editarpedido.php" method="post">
   <input name="pedido" type=hidden id="pedido" value="<?php echo $pedido ?>"/>
-  <table>
-	<tr id='titulo'>
-	<td><b>Pedido</b></td>
-	<td><b>Orden</b></td>
-	<td><b>Artículo</b></td>
-	<td><b>Cantidad</b></td>
-	<td><b>Precio</b></td>
-
 <?php 
 detallesPedido($pedido);
 

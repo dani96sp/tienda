@@ -503,6 +503,15 @@ function detallesPedido(&$numpedido) {
 	ORDER BY lineapedido.numpedido DESC, lineapedido.numorden asc";
 	//acentos
 	$con->query("SET NAMES 'utf8'");
+
+	echo "<table>";
+    echo "<tr id='titulo'>";
+    echo "<td><b>Pedido</b></td>";
+    echo "<td><b>Orden</b></td>";
+    echo "<td><b>Artículo</b></td>";
+    echo "<td><b>Cantidad</b></td>";
+    echo "<td><b>Precio</b></td>";
+
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$preciototal = $preciototal + $row['precio'];
@@ -524,4 +533,3 @@ function detallesPedido(&$numpedido) {
 	echo "<h1>Estado actual: $estado</h1>";
 }
 
-?>
