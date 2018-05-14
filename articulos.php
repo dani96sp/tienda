@@ -8,7 +8,7 @@ $keywords = "articulos, palabras clave, keywords";
 $num_filas = 5;
 
 
-//Si se ha espeficiado un orden lo recogemos en la variable $orden
+//Si se ha especificado un orden lo recogemos en la variable $orden
 if (isset($_GET['orden'])) {
     $orden = $_GET['orden'];
 } else {
@@ -53,7 +53,6 @@ include("cabecera.php");
  <option value="precio">Precio</option>
  <option value="nombre">Nombre</option>
 </select>
-  <input type="hidden" name="categoria" value="<?php echo $categoria ?>">
   <input type="hidden" name="desplazamiento" value="<?php echo $desplazamiento?>" />
   <button type="submit">Enviar</button></h1>
 </form>

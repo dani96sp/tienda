@@ -1,4 +1,4 @@
-﻿- UNDEFINED VARIABLE CATEGORIA articulos.php
+﻿- Arreglar @mysql_loquesea cambiarlo por mysqli_loquesea con otra sintaxis como en cabecera.php
 
 
 - Llamar siempre a index.php pasándole parámetros y dichos parámetros indican que página cargar en la zona principal de la web
@@ -18,9 +18,11 @@ switch ($i) {
 - "Esta página te ha redirigido demasiadas veces."
 ERR_TOO_MANY_REDIRECTS
 
-- Menos variables globales y más pasar datos a las funciones y devolver lo que haga falta.
-
 - Diseño web..
+
++ Menos variables globales y más pasar datos a las funciones y devolver lo que haga falta.
+
++ UNDEFINED VARIABLE CATEGORIA articulos.php y demas
 
 + Ver mis pedidos: mostrar pedidos sin detalle y al pulsar en el ver el detalle. Además mostrarlo por pedidos y no por artículos.
 

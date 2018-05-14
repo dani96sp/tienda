@@ -51,7 +51,6 @@ include("cabecera.php");
  <option value="precio">Precio</option>
  <option value="nombre">Nombre</option>
 </select>
-  <input type="hidden" name="categoria" value="<?php echo $categoria ?>">
   <input type="hidden" name="desplazamiento" value="<?php echo $desplazamiento?>" />
   <button type="submit">Enviar</button>
 </form>
