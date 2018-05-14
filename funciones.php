@@ -5,6 +5,7 @@ define ("DATABASE","u136110db1");
 define ("USER_DB","u136110db1");
 define ("PASSWORD_DB","c2KOuQ3");
 
+
 //La función parametro_plantilla la utilizamos
 //para poner el título de la página, la descripción
 //y las palabras clave en cada página 
@@ -20,7 +21,8 @@ function parametro_plantilla($variable){
 function mostrarClientes() {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$sql = "SELECT * FROM usuarios WHERE `tipo` = 'cliente'";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$username = $row["username"];
@@ -35,7 +37,8 @@ function mostrarClientes() {
 function mostrarEmpleados() {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$sql = "SELECT * FROM usuarios WHERE `tipo` = 'empleado'";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$username = $row["username"];
@@ -58,13 +61,13 @@ function mostrarArticulos(&$orden) {
 	$query1 = mysqli_query($con, "select * from articulos");
 	$total_articulos = mysqli_num_rows($query1);
 	$sql = "SELECT * FROM articulos ORDER BY $orden LIMIT $desplazamiento, $num_filas";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$id = $row["id"];
 			// seleccionar las categorias de cada articulo
 			$sql2 = "SELECT nombre FROM categorias WHERE articulo = '$id'";
-			$acentos = $con->query("SET NAMES 'utf8'");
 
 			printf ("%s %s %s %s %s %s", "</td></tr><tr><td><a href='articulos/$id.png'><img src='articulos/" . $row["id"] . ".png' width='50px' height='50px'></a>", "</td><td>". $row["nombre"], "</td><td>" . $row["descripcion"], "</td><td>" . $row["precio"],   "€</td><td><b>" . $row["oferta"] . "</b></td><td><b>", $row["stock"] . "</b></td><td>");
 			//imprimimos las categorias
@@ -112,8 +115,11 @@ function mostrarCompras() {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$query1 = mysqli_query($con, "SELECT lineapedido.* FROM pedidos, lineapedido WHERE pedidos.numpedido = lineapedido.numpedido AND cliente = '$cliente'");
 	$total_articulos = mysqli_num_rows($query1);
-	$sql2 = "SELECT lineapedido.numpedido, lineapedido.numorden, lineapedido.codarticulo, lineapedido.cantidad, lineapedido.precio, articulos.nombre, pedidos.fecha, pedidos.estado FROM lineapedido, articulos, pedidos WHERE lineapedido.numpedido = pedidos.numpedido AND lineapedido.codarticulo = articulos.id AND pedidos.cliente = '$cliente' ORDER BY lineapedido.numpedido DESC, lineapedido.numorden asc LIMIT $desplazamiento, $num_filas";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	$sql2 = "SELECT lineapedido.numpedido, lineapedido.numorden, lineapedido.codarticulo, lineapedido.cantidad, lineapedido.precio, articulos.nombre, pedidos.fecha, pedidos.estado
+	FROM lineapedido, articulos, pedidos WHERE lineapedido.numpedido = pedidos.numpedido AND lineapedido.codarticulo = articulos.id AND pedidos.cliente = '$cliente'
+	ORDER BY lineapedido.numpedido DESC, lineapedido.numorden asc LIMIT $desplazamiento, $num_filas";
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 
 	//TODO intentar reemplazar global
 	global $total;
@@ -155,12 +161,13 @@ function mostrarPedidos() {
 	if (isset($_GET["desplazamiento"]))
 		$desplazamiento = $_GET["desplazamiento"];
 	else $desplazamiento = 0;
-	$preciototal = 0;
+
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$query1 = mysqli_query($con, "SELECT * FROM pedidos");
 	$total_articulos = mysqli_num_rows($query1);
 	$sql = "SELECT * FROM pedidos ORDER BY numpedido DESC LIMIT $desplazamiento, $num_filas";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$pedido = $row["numpedido"];
@@ -195,7 +202,8 @@ function mostrarPedidos() {
 //Mostramos las categorías
 function mostrarCategorias() {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	$sql = "SELECT DISTINCT nombre FROM categorias";
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
@@ -210,11 +218,11 @@ function mostrarCategorias() {
 //Mostramos las categorías para un articulo
 function mostrarCategoriasArticulo() {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	$sql = "SELECT DISTINCT nombre FROM categorias";
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
-			$nombre = $row["nombre"];
 			printf ("%s", "<input type='checkbox' name='categoria[]' value='".$row["nombre"]."'>" . $row["nombre"] . "<br />");
 		}
 		mysqli_free_result($result);
@@ -225,7 +233,8 @@ function mostrarCategoriasArticulo() {
 //Mostramos las categorías para un articulo modificado
 function mostrarCategoriasArticuloModificado($articulo) {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	$sql = "SELECT DISTINCT nombre FROM categorias";
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
@@ -257,7 +266,8 @@ function mostrarArticulosPorCategoria() {
 	$query1 = mysqli_query($con, "select DISTINCT categorias.* from categorias,articulos WHERE categorias.nombre = '$categoria' AND articulos.stock = 'si'");
 	$total_articulos = mysqli_num_rows($query1);
 	$sql = "SELECT DISTINCT articulos.* FROM articulos,categorias WHERE categorias.nombre = '$categoria' && articulos.id = categorias.articulo AND articulos.stock = 'si' ORDER BY $orden LIMIT $desplazamiento, $num_filas";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$id = $row["id"];
@@ -301,7 +311,8 @@ function mostrarArticulosOferta(&$orden) {
 	$query1 = mysqli_query($con, "SELECT articulos.* from articulos WHERE articulos.oferta = 'si' AND articulos.stock = 'si'");
 	$total_articulos = mysqli_num_rows($query1);
 	$sql = "SELECT articulos.* FROM articulos WHERE articulos.oferta = 'si' AND articulos.stock = 'si' ORDER BY $orden LIMIT $desplazamiento, $num_filas";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$id = $row["id"];
@@ -346,7 +357,8 @@ function mostrarCarrito(&$username) {
 		echo "<table border='1px,solid,black'> <tr id='titulo'> <td><b>Artículo</b></td> <td id='editar'><b>Cantidad</b></td> <td><b>Precio</b></td> </tr>";
 		foreach ($_COOKIE["cesta_de_".$username] as $idarticulo => $unidades) {
 			$unidadestotal = $unidadestotal + $unidades;
-			$acentos = $con->query("SET NAMES 'utf8'");
+			//acentos
+			$con->query("SET NAMES 'utf8'");
 			$articulo = mysqli_query($con, "select nombre, precio from articulos WHERE id = '$idarticulo'");
 			$row = mysqli_fetch_assoc($articulo);
 			$precio = $row['precio'] * $unidades;
@@ -373,7 +385,8 @@ function mostrarCarritoSimple(&$username) {
 		echo "<table border='1px,solid,black'> <tr> <td><b>Artículo</b></td> <td><b>Cantidad</b></td> </tr>";
 		foreach ($_COOKIE["cesta_de_".$username] as $idarticulo => $unidades) {
 			$unidadestotal = $unidadestotal + $unidades;
-			$acentos = $con->query("SET NAMES 'utf8'");
+			//acentos
+			$con->query("SET NAMES 'utf8'");
 			$articulo = mysqli_query($con, "select nombre from articulos WHERE id = '$idarticulo'");
 			$row = mysqli_fetch_assoc($articulo);
 			printf ("%s %s", "<tr> <td>" . $row['nombre'], "</td> <td>" . $unidades . "</td> </tr>");
@@ -391,7 +404,8 @@ function agregarCategoria(&$nomCategoria) {
 	if(!empty($nomCategoria)) {
 		$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 		$query = "select nombre from categorias WHERE nombre = '$nomCategoria'";
-		$acentos = $con->query("SET NAMES 'utf8'");
+		//acentos
+		$con->query("SET NAMES 'utf8'");
 		$result = mysqli_query($con, $query);
 		$rows = mysqli_num_rows($result);
 		// Comprobamos que no exista
@@ -400,7 +414,6 @@ function agregarCategoria(&$nomCategoria) {
 		} else {
 			// Añadimos la categoría
 			$sql = "INSERT INTO categorias (nombre) VALUES ('$nomCategoria')";
-			$acentos = $con->query("SET NAMES 'utf8'");
 			if(!mysqli_query($con, $sql)) {
 				echo "Algo ha fallado al insertar la categoría $nomCategoria en base de datos";
 			} else {
@@ -416,7 +429,8 @@ function agregarCategoria(&$nomCategoria) {
 function mostrarPanelCategorias() {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$sql = "SELECT DISTINCT nombre FROM categorias";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$nomCategoria = $row["nombre"];
@@ -437,7 +451,8 @@ function modificarCategoria(&$nomCategoria, &$nuevoNomCategoria) {
 	if(!empty($nuevoNomCategoria)) {
 		$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 		$query = "select nombre from categorias WHERE nombre = '$nuevoNomCategoria'";
-		$acentos = $con->query("SET NAMES 'utf8'");
+		//acentos
+		$con->query("SET NAMES 'utf8'");
 		$result = mysqli_query($con, $query);
 		$rows = mysqli_num_rows($result);
 		// Comprobamos que no exista
@@ -446,7 +461,6 @@ function modificarCategoria(&$nomCategoria, &$nuevoNomCategoria) {
 		} else {
 			// Añadimos la categoría
 			$sql = "UPDATE categorias SET nombre = '$nuevoNomCategoria' WHERE nombre = '$nomCategoria'";
-			$acentos = $con->query("SET NAMES 'utf8'");
 			if(!mysqli_query($con, $sql)) {
 				echo "Algo ha fallado al modificar la categoría $nomCategoria en base de datos";
 			} else {
@@ -462,14 +476,14 @@ function modificarCategoria(&$nomCategoria, &$nuevoNomCategoria) {
 function eliminarCategoria(&$nomCategoria) {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$query = "select nombre from categorias WHERE nombre = '$nomCategoria'";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	$result = mysqli_query($con, $query);
 	$rows = mysqli_num_rows($result);
 	// Comprobamos que exista
 	if ($rows >= 1) {
 		// Eliminamos la categoría
 		$sql = "DELETE FROM categorias WHERE nombre = '$nomCategoria'";
-		$acentos = $con->query("SET NAMES 'utf8'");
 		if(!mysqli_query($con, $sql)) {
 			echo "Algo ha fallado al eliminar la categoría $nomCategoria de la base de datos";
 		} else {
@@ -490,7 +504,8 @@ function detallesPedido(&$numpedido) {
 	$sql = "SELECT lineapedido.numpedido, lineapedido.numorden, lineapedido.codarticulo, lineapedido.cantidad, lineapedido.precio, articulos.nombre, pedidos.cliente, pedidos.fecha, pedidos.estado
 	FROM lineapedido, pedidos, articulos WHERE pedidos.numpedido = lineapedido.numpedido AND lineapedido.codarticulo = articulos.id AND lineapedido.numpedido = '$numpedido'
 	ORDER BY lineapedido.numpedido DESC, lineapedido.numorden asc";
-	$acentos = $con->query("SET NAMES 'utf8'");
+	//acentos
+	$con->query("SET NAMES 'utf8'");
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$preciototal = $preciototal + $row['precio'];
