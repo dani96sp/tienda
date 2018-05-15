@@ -1,7 +1,4 @@
-﻿- Arreglar @mysql_loquesea cambiarlo por mysqli_loquesea con otra sintaxis como en cabecera.php
-
-
-- Llamar siempre a index.php pasándole parámetros y dichos parámetros indican que página cargar en la zona principal de la web
+﻿- Llamar siempre a index.php pasándole parámetros y dichos parámetros indican que página cargar en la zona principal de la web
 UTILIZANDO SWITCH:
 switch ($i) {
     case "manzana":
@@ -19,6 +16,8 @@ switch ($i) {
 ERR_TOO_MANY_REDIRECTS
 
 - Diseño web..
+
++ Arreglar @mysql_loquesea cambiarlo por mysqli_loquesea con otra sintaxis como en cabecera.php
 
 + Menos variables globales y más pasar datos a las funciones y devolver lo que haga falta.
 
