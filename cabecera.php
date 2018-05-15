@@ -65,7 +65,8 @@
         // SQL query to fetch information of registered users and finds user match.
         $sql = "select password from usuarios WHERE username='$username'";
         $result = mysqli_query($con, $sql);
-        $passdb = mysql_result($result, 0);
+        $row = mysqli_fetch_row($result);
+        $passdb = $row[0];
         if (password_verify($password, $passdb)) {
             $_SESSION['login_user']=$username; // Initializing Session
         } else {

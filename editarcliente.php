@@ -86,7 +86,8 @@ if(isset($_REQUEST['enviar'])){
 
 $sql = "select tipo from usuarios where username='$_SESSION[login_user]'";
 $result = mysqli_query($con, $sql);
-$tipo = mysql_result($result, 0);
+$row = mysqli_fetch_row($result);
+$tipo = $row[0];
 
 mysqli_close($con);
 ?>
