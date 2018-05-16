@@ -51,12 +51,7 @@ function mostrarEmpleados() {
 }
 
 //Mostramos los artículos
-function mostrarArticulos(&$orden) {
-	$num_filas = 5;
-
-	if (isset($_GET["desplazamiento"]))
-		$desplazamiento = $_GET["desplazamiento"];
-	else $desplazamiento = 0;
+function mostrarArticulos(&$orden, $desplazamiento, $num_filas) {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$query1 = mysqli_query($con, "select * from articulos");
 	$total_articulos = mysqli_num_rows($query1);
@@ -77,17 +72,18 @@ function mostrarArticulos(&$orden) {
 				}
 			}
 			//y por ultimo el boton de editar dicho articulo
-			printf ("%s", "</td><td><a href='editararticulo.php?articulo=" . $id . "'><button>Modificar</button></a> ");
+			printf ("%s", "</td><td><a href='administrararticulos.php?modarticulo=" . $id . "'><button>Modificar</button></a> ");
 
 		}
 		mysqli_free_result($result);
 	}
 	mysqli_close($con);
 	echo "</td></tr></table><br>";
+
 	//desplazamiento
-	$prevpag = $desplazamiento / 5;
-	$currpag = $desplazamiento / 5 + 1;
-	$nextpag = $desplazamiento / 5 + 2;
+	$prevpag = $desplazamiento / $num_filas;
+	$currpag = $prevpag +  1;
+	$nextpag = $prevpag +  2;
 	if ($desplazamiento > 0) {
 		$prev = $desplazamiento - $num_filas;
 		$url = $_SERVER["PHP_SELF"] . "?orden=$orden&desplazamiento=$prev";
@@ -103,6 +99,7 @@ function mostrarArticulos(&$orden) {
 	} else {
 		echo "Página $currpag";
 	}
+    echo "<br/><br/>";
 }
 
 //Mostramos las compras del usuario logueado
@@ -121,7 +118,7 @@ function mostrarCompras() {
 	//acentos
 	$con->query("SET NAMES 'utf8'");
 
-	$preciototal = '0';
+	$preciototal = 0;
 	if ($result2 = mysqli_query($con, $sql2)) {
         while ($row2 = mysqli_fetch_assoc($result2)) {
             $precio = $row2["precio"];
@@ -135,9 +132,9 @@ function mostrarCompras() {
 	mysqli_close($con);
 	echo "</td></tr></table><br>";
 	//desplazamiento
-	$prevpag = $desplazamiento / 5;
-	$currpag = $desplazamiento / 5 + 1;
-	$nextpag = $desplazamiento / 5 + 2;
+	$prevpag = $desplazamiento / $num_filas;
+	$currpag = $prevpag +  1;
+	$nextpag = $prevpag +  2;
 	if ($desplazamiento > 0) {
 		$prev = $desplazamiento - $num_filas;
 		$url = $_SERVER["PHP_SELF"] . "?desplazamiento=$prev";
@@ -180,9 +177,9 @@ function mostrarPedidos() {
 	mysqli_close($con);
 	echo "</td></tr></table><br>";
 	//desplazamiento
-	$prevpag = $desplazamiento / 5;
-	$currpag = $desplazamiento / 5 + 1;
-	$nextpag = $desplazamiento / 5 + 2;
+	$prevpag = $desplazamiento / $num_filas;
+	$currpag = $prevpag +  1;
+	$nextpag = $prevpag +  2;
 	if ($desplazamiento > 0) {
 		$prev = $desplazamiento - $num_filas;
 		$url = $_SERVER["PHP_SELF"] . "?desplazamiento=$prev";
@@ -275,9 +272,9 @@ function mostrarArticulosPorCategoria(&$orden, &$categoria) {
 	mysqli_close($con);
 	echo "</td></tr></table><br>";
 	//desplazamiento
-	$prevpag = $desplazamiento / 5;
-	$currpag = $desplazamiento / 5 + 1;
-	$nextpag = $desplazamiento / 5 + 2;
+	$prevpag = $desplazamiento / $num_filas;
+	$currpag = $prevpag +  1;
+	$nextpag = $prevpag +  2;
 	if ($desplazamiento > 0) {
 		$prev = $desplazamiento - $num_filas;
 		$url = $_SERVER["PHP_SELF"] . "?categoria=$categoria&orden=$orden&desplazamiento=$prev";
@@ -294,8 +291,6 @@ function mostrarArticulosPorCategoria(&$orden, &$categoria) {
 		echo "Página $currpag";
 	}
 }
-
-
 
 //Mostramos los artículos en oferta
 function mostrarArticulosOferta(&$orden) {
@@ -322,9 +317,9 @@ function mostrarArticulosOferta(&$orden) {
 	mysqli_close($con);
 	echo "</td></tr></table><br>";
 	//desplazamiento
-	$prevpag = $desplazamiento / 5;
-	$currpag = $desplazamiento / 5 + 1;
-	$nextpag = $desplazamiento / 5 + 2;
+	$prevpag = $desplazamiento / $num_filas;
+	$currpag = $prevpag +  1;
+	$nextpag = $prevpag +  2;
 	if ($desplazamiento > 0) {
 		$prev = $desplazamiento - $num_filas;
 		$url = $_SERVER["PHP_SELF"] . "?orden=$orden&desplazamiento=$prev";
@@ -341,7 +336,6 @@ function mostrarArticulosOferta(&$orden) {
 		echo "Página $currpag";
 	}
 }
-
 
 //Mostramos el carrito
 function mostrarCarrito(&$username) {
@@ -422,7 +416,6 @@ function agregarCategoria(&$nomCategoria) {
 	}
 }
 
-
 function mostrarPanelCategorias() {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$sql = "SELECT DISTINCT nombre FROM categorias";
@@ -468,7 +461,6 @@ function modificarCategoria(&$nomCategoria, &$nuevoNomCategoria) {
 		echo "Inserte un nombre";
 	}
 }
-
 
 function eliminarCategoria(&$nomCategoria) {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
@@ -532,4 +524,3 @@ function detallesPedido(&$numpedido) {
 	echo "<h1>Fecha: $fecha</h1>";
 	echo "<h1>Estado actual: $estado</h1>";
 }
-

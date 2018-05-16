@@ -18,18 +18,18 @@
 <div id="registro" class="cuerpolateral">
     <div id="otras" class="cuerpolateral">
         <h3>
-        <ul>
-        <li><a href="perfil.php">Mi perfil</a>
-        <li><a href="compras.php">Mis compras</a>
-        <?php
-            if($tipo == 'Empleado') {
-                include("empleado.php");
-            }
-            if($tipo == 'SuperUsuario') {
-                include("superusuario.php");
-            }
-        ?>
-        </ul>
+            <ul>
+                <li><a href="perfil.php">Mi perfil</a></li>
+                <li><a href="compras.php">Mis compras</a></li>
+<?php
+    if($tipo == 'Empleado') {
+        include("empleado.php");
+    }
+    if($tipo == 'SuperUsuario') {
+        include("superusuario.php");
+    }
+?>
+            </ul>
         </h3>
     </div>
 	<a href="logout.php"><button>Cerrar sesión</button></a>

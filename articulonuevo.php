@@ -62,7 +62,7 @@ if(isset($_REQUEST['enviar'])){
 							echo "Algo ha fallado al insertar la categoría $categoria del articulo $id en base de datos";
 						}
 					}
-					header("Location: articulos.php");
+					echo "<h1>Artículo insertado correctamente</h1>";
 				} else { // Algo ha fallado con la imagen
 					switch ($_FILES['imagen']['error']) {
 					    case 1:
@@ -90,9 +90,9 @@ if(isset($_REQUEST['enviar'])){
 <div class="categorias">
 	<h1>Categorías:</h1>
 
-	<?php
-	mostrarCategoriasArticulo();
-	?>
+<?php
+    mostrarCategoriasArticulo();
+?>
 </div>
 <?php
 if(!isset($_REQUEST['enviar'])){

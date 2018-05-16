@@ -26,9 +26,9 @@ if (isset($_GET["desplazamiento"]))
 else $desplazamiento = 0;
 
 //Número de páginas
-$prevpag = $desplazamiento / 5;
-$currpag = $desplazamiento / 5 + 1;
-$nextpag = $desplazamiento / 5 + 2;
+$prevpag = $desplazamiento / $num_filas;
+$currpag = $prevpag +  1;
+$nextpag = $prevpag +  2;
 
 //Si se ha especificado un orden lo recogemos en la variable $orden
 if (isset($_GET['orden'])) {

@@ -139,9 +139,9 @@ if(isset($_REQUEST['enviar'])){
 	<div class="categorias">
 	<h1>Categorías:</h1>
 
-	<?php
+<?php
 	mostrarCategoriasArticuloModificado($id);
-	?>
+?>
 </div>
   <label for="nombre" id="correcto"><h1>Nombre del artículo:</label>
   <input type="text" name="nombre" id="nombre" maxlength="50" value="<?php echo $nombre ?>"/></h1>

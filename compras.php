@@ -3,7 +3,7 @@ $titulo_pagina = "Mis compras";
 $descripcion = "mis compras";
 $keywords = "mis, compras, palabras clave, keywords";
 
-//Inluimos las funciones
+//Incluimos las funciones
 include("funciones.php");
 require("seguridad.php");
 
