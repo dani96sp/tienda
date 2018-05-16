@@ -12,10 +12,11 @@ switch ($i) {
         break;
 }
 
-- "Esta página te ha redirigido demasiadas veces."
-ERR_TOO_MANY_REDIRECTS
-
 - Diseño web..
+
++ "Esta página te ha redirigido demasiadas veces."
+El problema estaba en que cuando había carrito de invitado y logueabas, en seguridad.php te redirecciona a
+confirmarcarrito.php y confirmarcarrito.php tenía incluido seguridad.php, por lo que hacía bucle infinito.
 
 + Arreglar @mysql_loquesea cambiarlo por mysqli_loquesea con otra sintaxis como en cabecera.php
 

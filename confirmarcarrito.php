@@ -3,7 +3,7 @@ $titulo_pagina = "Confirmar Carrito";
 $descripcion = "carrito invitado";
 $keywords = "carrito, palabras clave, keywords";
 require("funciones.php");
-require("seguridad.php");
+//require("seguridad.php");
 //require("compra.php");
 
 //Iniciamos con la variable del número de filas en 5
