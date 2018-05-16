@@ -6,10 +6,3 @@ if (!isset ($_SESSION["login_user"])) {
    	//ademas salgo de este script 
    	exit(); 
 }
-if(isset($_SESSION["login_user"]) && isset($_COOKIE["cesta_de_invitado"])) {
-	//si hay una cesta de invitado reenvio a la pagina de confimacion
-   	header("Location: confirmarcarrito.php"); 
-   	//ademas salgo de este script 
-   	exit(); 
-}
-?>

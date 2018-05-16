@@ -1,7 +1,6 @@
 <?php
-
-require("seguridad.php");
 session_start();
+require("seguridad.php");
 $username = $_SESSION['login_user'];
 $nom_cookie="cesta_de_".$username;
 

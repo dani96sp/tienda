@@ -36,6 +36,7 @@ include("cabecera.php");
 $submit = (isset($_REQUEST['enviar'])) ? true : false;
 
 // Comprobamos el parámetro que se pasa
+$option = 'def';
 if (isset($_GET['addarticulo'])) {
     $option = 'add';
 } else if (isset($_GET['modarticulo'])) {

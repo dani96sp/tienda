@@ -4,7 +4,12 @@ $descripcion = "carrito";
 $keywords = "carrito, palabras clave, keywords";
 require("funciones.php");
 //require("compra.php");
-
+if(isset($_SESSION["login_user"]) && isset($_COOKIE["cesta_de_invitado"])) {
+    //si hay una cesta de invitado reenvio a la pagina de confimacion
+    header("Location: confirmarcarrito.php");
+    //ademas salgo de este script
+    exit();
+}
 //Se incluye la cabecera y comienza el cuerpo de la página a continuación
 include("cabecera.php");
 ?>

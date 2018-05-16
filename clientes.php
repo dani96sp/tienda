@@ -5,6 +5,7 @@ $keywords = "clientes, palabras clave, keywords";
 
 //Inluimos las funciones
 include("funciones.php");
+include("seguridad.php");
 
 //Se incluye la cabecera y comienza el cuerpo de la página a continuación
 include("cabecera.php");

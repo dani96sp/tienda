@@ -14,6 +14,7 @@ if(isset($_REQUEST['enviar'])) {
     $submit = true;
 } else $submit = false;
 
+$option = 'def';
 // Comprobamos el parámetro que se pasa
 if (isset($_GET['addcategoria'])) {
     $option = 'add';
