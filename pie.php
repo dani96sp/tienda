@@ -1,7 +1,7 @@
 		<!-- Inicio NavAbajo -->
 		<div id="navabajo">
 		<a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">Volver</a> |
-		<a href="#">Agenda de eventos</a> | 
+		<a href="#">Échale un vistazo a mi GitHub</a> |
 		<a href="todo.txt">TODO</a>
 		</div>
 		<!-- Fin NavAbajo -->
