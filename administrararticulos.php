@@ -37,11 +37,12 @@ $submit = (isset($_REQUEST['enviar'])) ? true : false;
 
 // Comprobamos el parámetro que se pasa
 $option = 'def';
-if (isset($_GET['addarticulo'])) {
+//TODO
+if (isset($_REQUEST['addarticulo'])) {
     $option = 'add';
-} else if (isset($_GET['modarticulo'])) {
+} else if (isset($_REQUEST['modarticulo'])) {
     $option = 'mod';
-    $idarticulo = $_GET['modarticulo'];
+    $idarticulo = $_REQUEST['modarticulo'];
 }
 
 switch ($option) {
@@ -122,7 +123,7 @@ mostrarCategoriasArticulo();
 ?>
         </div>
 <?php
-        if (submit) {
+        if ($submit) {
             //Si se han enviado datos los rellenamos con lo que se haya enviado si son correctos para ayudar
 ?>
             <label for="nombre" id="correcto"><h1>Nombre del artículo:</label>
@@ -189,7 +190,7 @@ mostrarCategoriasArticulo();
             mysqli_free_result($result);
         }
 
-        if (submit) {
+        if ($submit) {
             $nombre = $_POST["nombre"];
             $descripcion = $_POST["descripcion"];
             $precio = $_POST["precio"];
@@ -280,18 +281,18 @@ mostrarCategoriasArticulo();
         <h1><?php echo parametro_plantilla("titulo_pagina") ?></h1>
         <fieldset>
             <legend>Modificar datos</legend>
-            <form name="formulario" id="formulario" action="administrararticulos.php?modarticulo" method="post" enctype="multipart/form-data">
+            <form name="formulario" id="formulario" action="administrararticulos.php?modarticulo=<?php echo $idarticulo ?>" method="post" enctype="multipart/form-data">
                 <div class="categorias">
                     <h1>Categorías:</h1>
 <?php
-                    mostrarCategoriasArticuloModificado($id);
+                    mostrarCategoriasArticuloModificado($idarticulo);
 ?>
                 </div>
                 <label for="nombre" id="correcto"><h1>Nombre del artículo:</label>
                 <input type="text" name="nombre" id="nombre" maxlength="50" value="<?php echo $nombre ?>"/></h1>
                 <label for="precio" id="correcto"><h1>Precio:</label>
                 <input type="text" name="precio" id="precio" maxlength="50" value="<?php echo $precio ?>"/></h1>
-                <input name="id" type=hidden id="id" value="<?php echo $id ?>"/>
+                <input name="id" type=hidden id="id" value="<?php echo $idarticulo ?>"/>
                 <label for="descripcion" id="correcto"><h1>Descripción:</h1></label>
                 <textarea name="descripcion" form="formulario"><?php echo $descripcion ?></textarea><br/>
 <?php
@@ -309,7 +310,7 @@ mostrarCategoriasArticulo();
                 <h1>Imagen:
                     <br />
 <?php
-                    echo "<a href='articulos/$id.png'><img src='articulos/$id.png' width='50px' height='50px'></a>";
+                    echo "<a href='articulos/$idarticulo.png'><img src='articulos/$idarticulo.png' width='50px' height='50px'></a>";
 ?>
                     <br />
                     <input type="hidden" name="MAX_FILE_SIZE" VALUE="900000">
