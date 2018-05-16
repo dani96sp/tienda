@@ -26,11 +26,14 @@ function mostrarClientes() {
 	if ($result = mysqli_query($con, $sql)) {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$username = $row["username"];
-			printf ("%s %s %s %s %s", "</td></tr><tr><td>" . $username, "</td><td>" . $row["nombre"], "</td><td>" . $row["telefono"],  "</td><td>" . $row["email"], "</td><td><a href='editarcliente.php?username=$username'><button>EDITAR</button></a>");
+			printf ("%s %s %s %s %s", "</td></tr><tr><td>" . $username, "</td><td>" . $row["nombre"],
+                "</td><td>" . $row["telefono"],  "</td><td>" . $row["email"],
+                "</td><td><a href='administrarclientes.php?modcliente=$username'><button>EDITAR</button></a>");
 		}
 		mysqli_free_result($result);
 	}
 	mysqli_close($con);
+    echo "</td></tr></table><br>";
 }
 
 //Mostramos los empleados
@@ -390,6 +393,7 @@ function mostrarCarritoSimple(&$username) {
 mysqli_close($con);
 }
 
+//Agregamos una categoría
 function agregarCategoria(&$nomCategoria) {
 	// Comprobamos que no esté vacío el nombre
 	if(!empty($nomCategoria)) {
@@ -416,6 +420,7 @@ function agregarCategoria(&$nomCategoria) {
 	}
 }
 
+//Mostramos el panel de las categorías
 function mostrarPanelCategorias() {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$sql = "SELECT DISTINCT nombre FROM categorias";
@@ -436,6 +441,7 @@ function mostrarPanelCategorias() {
 	echo "</td></tr></table><br>";
 }
 
+//Modificamos una categoría
 function modificarCategoria(&$nomCategoria, &$nuevoNomCategoria) {
 	// Comprobamos que no esté vacío el nombre
 	if(!empty($nuevoNomCategoria)) {
@@ -462,6 +468,7 @@ function modificarCategoria(&$nomCategoria, &$nuevoNomCategoria) {
 	}
 }
 
+//Eliminamos una categoría
 function eliminarCategoria(&$nomCategoria) {
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
 	$query = "select nombre from categorias WHERE nombre = '$nomCategoria'";
@@ -483,6 +490,7 @@ function eliminarCategoria(&$nomCategoria) {
 	}
 }
 
+//Mostramos los detalles de un pedido
 function detallesPedido(&$numpedido) {
 	$preciototal = 0;
 	$cantidadtotal = 0;
@@ -523,4 +531,18 @@ function detallesPedido(&$numpedido) {
 	echo "<h1>Cliente: $cliente</h1>";
 	echo "<h1>Fecha: $fecha</h1>";
 	echo "<h1>Estado actual: $estado</h1>";
+}
+
+//Damos de alta a un empleado
+function altaEmpleado($cliente){
+    $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
+    //acentos
+    $con->query("SET NAMES 'utf8'");
+
+    $sql = "UPDATE usuarios SET tipo = 'Empleado' WHERE username = '$cliente'";
+    if (mysqli_query($con, $sql)) {
+        return 'Se ha dado de alta al empleado '.$cliente.' correctamente';
+    } else {
+        return 'Ha habido un problema al dar de alta al empleado '.$cliente;
+    }
 }

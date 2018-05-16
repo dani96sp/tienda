@@ -22,10 +22,7 @@ include("cabecera.php");
 //Llamamos a la función mostrarClientes()
 //para que monte la tabla con los clientes
 mostrarClientes();
-?>
-</td></tr></table><br>
 
-<?php
 //Por último incluimos el pie
 include("pie.php");
 ?>

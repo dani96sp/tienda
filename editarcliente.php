@@ -89,7 +89,7 @@ $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_row($result);
 $tipo = $row[0];
 
-mysqli_close($con);
+//mysqli_close($con);
 ?>
 
 
@@ -119,7 +119,7 @@ if ($tipo == 'SuperUsuario') {
 }
 ?>
 </fieldset>
+<br/><br/>
 <?php
-echo "<br/><br/>";
 include("pie.php");
 ?>
