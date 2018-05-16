@@ -15,6 +15,7 @@ if(isset($_REQUEST['enviar'])) {
 } else $submit = false;
 
 // Comprobamos el parámetro que se pasa
+$option = 'def';
 if (isset($_REQUEST['modcliente'])) {
     $option = 'mod';
     $cliente = $_REQUEST['modcliente'];
