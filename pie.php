@@ -1,6 +1,6 @@
 		<!-- Inicio NavAbajo -->
 		<div id="navabajo">
-		<a href="index.php">Volver</a> | 
+		<a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">Volver</a> |
 		<a href="#">Agenda de eventos</a> | 
 		<a href="todo.txt">TODO</a>
 		</div>
