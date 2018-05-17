@@ -46,11 +46,12 @@ function mostrarEmpleados() {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$username = $row["username"];
 			printf ("%s %s %s %s %s", "</td></tr><tr><td>" . $username, "</td><td>" . $row["nombre"], "</td><td>" . $row["telefono"],  "</td><td>" . $row["email"],
-			"</td><td><a href='editarempleado.php?username=$username'><button>EDITAR</button></a>");
+			"</td><td><a href='administrarempleados.php?modempleado=$username'><button>EDITAR</button></a>");
 		}
 		mysqli_free_result($result);
 	}
 	mysqli_close($con);
+	echo "</td></tr></table><br>";
 }
 
 //Mostramos los artículos
@@ -544,5 +545,19 @@ function altaEmpleado($cliente){
         return 'Se ha dado de alta al empleado '.$cliente.' correctamente';
     } else {
         return 'Ha habido un problema al dar de alta al empleado '.$cliente;
+    }
+}
+
+//Damos de baja a un empleado
+function bajaEmpleado($empleado){
+    $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
+    //acentos
+    $con->query("SET NAMES 'utf8'");
+
+    $sql = "UPDATE usuarios SET tipo = 'Cliente' WHERE username = '$empleado'";
+    if (mysqli_query($con, $sql)) {
+        return 'Se ha dado de baja al empleado '.$empleado.' correctamente';
+    } else {
+        return 'Ha habido un problema al dar de baja al empleado '.$empleado;
     }
 }

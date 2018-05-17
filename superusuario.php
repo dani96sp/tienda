@@ -2,4 +2,4 @@
                 <li><a href="administrararticulos.php">Artículos</a></li>
                 <li><a href="administrarcategorias.php">Categorías</a></li>
                 <li><a href="administrarclientes.php">Clientes</a></li>
-                <li><a href="empleados.php">Empleados</a></li>
+                <li><a href="administrarempleados.php">Empleados</a></li>

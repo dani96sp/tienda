@@ -1,11 +1,23 @@
 <?php
-$titulo_pagina = "Administrar Clientes";
-$descripcion = "administrar clientes";
-$keywords = "administrar, clientes, palabras clave, keywords";
+$titulo_pagina = "Administrar Empleados";
+$descripcion = "administrar empleados";
+$keywords = "administrar, empleados, palabras clave, keywords";
 
 //Incluimos las funciones
 include("funciones.php");
 include("seguridad.php");
+
+//Comprobamos si el usuario editando el cliente tiene permisos de superusuario
+//Para poder modificar los datos de los empleados.
+$sql = "select tipo from usuarios where username='$_SESSION[login_user]'";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_row($result);
+$tipo = $row[0];
+
+if ($tipo != 'SuperUsuario') {
+    header("Location: index.php");
+}
+
 //Se incluye la cabecera y comienza el cuerpo de la página a continuación
 include("cabecera.php");
 
@@ -16,17 +28,17 @@ if(isset($_REQUEST['enviar'])) {
 
 // Comprobamos el parámetro que se pasa
 $option = 'def';
-if (isset($_REQUEST['modcliente'])) {
+if (isset($_REQUEST['modempleado'])) {
     $option = 'mod';
-    $cliente = $_REQUEST['modcliente'];
-} else if (isset($_REQUEST['altaempleado'])) {
-    $option = 'alta';
-    $cliente = $_REQUEST['altaempleado'];
+    $empleado = $_REQUEST['modempleado'];
+} else if (isset($_REQUEST['bajaempleado'])) {
+    $option = 'baja';
+    $empleado = $_REQUEST['bajaempleado'];
 }
 
 switch ($option) {
     case 'mod':
-    // Mostramos el contenido de modificar un cliente
+    // Mostramos el contenido de modificar un empleado
         $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
         //acentos
         $con->query("SET NAMES 'utf8'");
@@ -35,7 +47,7 @@ switch ($option) {
         $cTelefono = "correcto";
         $cEmail = "correcto";
 
-        $sql = "SELECT * FROM usuarios WHERE username = '$cliente'";
+        $sql = "SELECT * FROM usuarios WHERE username = '$empleado'";
         if ($result = mysqli_query($con, $sql)) {
             while ($row = mysqli_fetch_assoc($result)) {
                 $nombre = $row["nombre"];
@@ -89,24 +101,17 @@ switch ($option) {
                 echo "<h1>Algunos datos son incorrectos</h1>";
 
             } else { // si todo es correcto modificamos y le indicamos al usuario que todo ha ido correctamente
-                $sql = "UPDATE usuarios SET nombre = '$nombre', telefono = '$telefono', email = '$email' WHERE username = '$cliente'";
+                $sql = "UPDATE usuarios SET nombre = '$nombre', telefono = '$telefono', email = '$email' WHERE username = '$username'";
                 mysqli_query($con, $sql);
                 echo "<h1><i>Cambios guardados</i></h1>";
             }
         }
-
-        //Comprobamos si el usuario editando el cliente tiene permisos de superusuario
-        //Para poder dar de alta a clientes como empleados.
-        $sql = "select tipo from usuarios where username='$_SESSION[login_user]'";
-        $result = mysqli_query($con, $sql);
-        $row = mysqli_fetch_row($result);
-        $tipo = $row[0];
 ?>
         <h1><?php echo parametro_plantilla("titulo_pagina") ?></h1>
         <fieldset>
             <legend>Modificar datos</legend>
-            <form name="formulario" id="formulario" action="administrarclientes.php?modcliente=<?php echo $cliente ?>" method="post">
-                <input type="hidden" name="cliente" value="<?php echo $cliente ?>">
+            <form name="formulario" id="formulario" action="administrarempleados.php?modempleado=<?php echo $empleado ?>" method="post">
+                <input type="hidden" name="empleado" value="<?php echo $empleado ?>">
                 <label for="nombre" id="<?php echo $cNombre ?>">Nombre y apellidos:</label>
                 <input type="text" name="nombre" id="nombre" maxlength="50" value="<?php echo $nombre ?>"/><br/>
                 <label for="telefono" id="<?php echo $cTelefono ?>">Teléfono:</label>
@@ -116,20 +121,14 @@ switch ($option) {
                 <input type="submit" name="enviar" id="enviar" value="Guardar datos"/>
                 <input type="reset" name="limpiar" id="button" value="Restablecer datos" ><br/>
             </form>
-<?php
-            if ($tipo == 'SuperUsuario') {
-?>
-                <a href="administrarclientes.php?altaempleado=<?php echo $cliente ?>"><button>Dar de alta como empleado</button></a>
-<?php
-            }
-?>
+            <a href="administrarempleados.php?bajaempleado=<?php echo $empleado ?>"><button>Dar de baja al empleado</button></a>
         </fieldset>
         <br/><br/>
 <?php
         break;
-    case 'alta':
+    case 'baja':
         echo '<h1>'. parametro_plantilla("titulo_pagina") .'</h1>';
-        echo altaEmpleado($cliente);
+        echo bajaEmpleado($empleado);
         echo "<br/><br/>";
         //No hacemos break para que muestre el default también
     default:
@@ -144,9 +143,9 @@ switch ($option) {
                 <td><b>E-mail</b></td>
                 <td id='editar'><b>Editar</b></td>
 <?php
-                //Llamamos a la función mostrarClientes()
-                //para que monte la tabla con los clientes
-                mostrarClientes();
+                //Llamamos a la función mostrarEmpleados()
+                //para que monte la tabla con los empleados
+                mostrarEmpleados();
 }
 
 //Por último añadimos el pie
