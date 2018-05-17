@@ -114,7 +114,7 @@ switch ($option) {
 ?>
 <fieldset>
     <legend>Artículo nuevo</legend>
-    <form name="formulario" id="formulario" action="articulonuevo.php" method="post" enctype="multipart/form-data">
+    <form name="formulario" id="formulario" action="administrararticulos.php?addarticulo" method="post" enctype="multipart/form-data">
         <div class="categorias">
             <h1>Categorías:</h1>
 

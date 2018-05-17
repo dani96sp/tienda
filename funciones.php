@@ -68,7 +68,7 @@ function mostrarArticulos(&$orden, $desplazamiento, $num_filas) {
 			// seleccionar las categorias de cada articulo
 			$sql2 = "SELECT nombre FROM categorias WHERE articulo = '$id'";
 
-			printf ("%s %s %s %s %s %s", "</td></tr><tr><td><a href='articulos/$id.png'><img src='articulos/" . $row["id"] . ".png' width='50px' height='50px'></a>", "</td><td>". $row["nombre"], "</td><td>" . $row["descripcion"], "</td><td>" . $row["precio"],   "€</td><td><b>" . $row["oferta"] . "</b></td><td><b>", $row["stock"] . "</b></td><td>");
+			printf ("%s %s %s %s %s %s", "</td></tr><tr><td><a href='articulos/$id.png'><img src='articulos/" . $row["id"] . ".png' width='50px' height='50px'></a>", "</td><td>". $row["nombre"], "</td><td>" . $row["descripcion"], "</td><td>" . $row["precio"] . "€</td><td><b>", $row["oferta"] . "</b></td><td><b>", $row["stock"] . "</b></td><td>");
 			//imprimimos las categorias
 			if ($result2 = mysqli_query($con, $sql2)) {
 				while ($row = mysqli_fetch_assoc($result2)) {
