@@ -1,4 +1,8 @@
-﻿- Diseño web..
+﻿- Implementar administrarempleados.php
+
+- Implementar administrarcompras.php
+
+- Diseño web..
 
 + Llamar siempre a index.php pasándole parámetros y dichos parámetros indican que página cargar en la zona principal de la web
 Se ha implementado en algunas páginas como administrararticulos.php y similares pero no veo viable ponerlo en el index.
