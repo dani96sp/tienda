@@ -29,59 +29,59 @@ if (isset($_GET['addcategoria'])) {
 switch ($option) {
     case 'add':
         // Se muestra solo en el caso en el que se le de a añadir categoría
-        ?>
+?>
         <fieldset>
             <legend>Categoría nueva</legend>
             <form name="formulario" id="formulario" action="administrarcategorias.php?addcategoria" method="post">
-                <?php
+<?php
                 if ($submit) {
                     //Dejamos los campos en blanco por defecto
-                    ?>
+?>
                     <label for="nombre" id="correcto"><h1>Nombre de la categoría:</h1></label>
                     <input type="text" name="nombre" id="nombre" maxlength="50"/>
-                    <?php
+<?php
                 } else {
                     // Si hay submit se intenta agregar la categoría y comprueba que no exista ya
                     agregarCategoria($_POST['nombre']);
-                    ?>
+?>
                     <label for="nombre" id="correcto"><h1>Nombre de la categoría:</label>
                     <input type="text" name="nombre" id="nombre" maxlength="50" value="<?php echo $_POST['nombre'] ?>"/></h1>
-                    <?php
+<?php
                 }
-                ?>
+?>
                 <input type="submit" name="enviar" id="enviar" value="Enviar"/>
                 <input type="reset" name="limpiar" id="button" value="Restablecer datos" /><br/>
             </form>
         </fieldset>
-        <?php
+<?php
         break;
     case 'mod':
         // Mostramos el contenido de modificar una categoria
-        ?>
+?>
         <fieldset>
-            <legend>Categoría nueva</legend>
+            <legend>Modificar categoría <?php echo $nomCategoria ?></legend>
             <form name="formulario" id="formulario" action="administrarcategorias.php?modcategoria=<?php echo $nomCategoria ?>" method="post">
-                <?php
+<?php
                 if($submit){
-                    //Dejamos los campos en blanco por defecto
-                    ?>
-                    <label for="nombre" id="correcto"><h1>Nombre de la categoría:</label>
-                    <input type="text" name="nombre" id="nombre" maxlength="50" value="<?php echo $nomCategoria ?>"/></h1>
-                    <?php
-                } else {
                     // Si hay submit se intenta modificar la categoría y comprueba que no exista ya etc
                     modificarCategoria($nomCategoria, $_POST['nombre']);
-                    ?>
-                    <label for="nombre" id="correcto"><h1>Nombre de la categoría:</label>
+?>
+                    <label for="nombre" id="correcto"><h1>Nuevo nombre de la categoría:</label>
                     <input type="text" name="nombre" id="nombre" maxlength="50" value="<?php echo $_POST['nombre'] ?>"/></h1>
-                    <?php
+<?php
+                } else {
+                    //Dejamos los campos en blanco por defecto
+?>
+                    <label for="nombre" id="correcto"><h1>Nuevo nombre de la categoría:</label>
+                    <input type="text" name="nombre" id="nombre" maxlength="50" value="<?php echo $nomCategoria ?>"/></h1>
+<?php
                 }
-                ?>
+?>
                 <input type="submit" name="enviar" id="enviar" value="Enviar"/>
                 <input type="reset" name="limpiar" id="button" value="Restablecer datos" /><br/>
             </form>
         </fieldset>
-        <?php
+<?php
         break;
     case 'del':
         // Mostramos el contenido de eliminar una categoria
@@ -97,14 +97,14 @@ switch ($option) {
         break;
     default:
         // Se muestra siempre que no se le haya dado a una de esas opciones
-        ?>
+?>
         <a href="administrarcategorias.php?addcategoria"><button>Añadir nueva categoría</button></a><br />
         <table>
             <tr id='titulo'>
                 <td><b>Categoría</b></td>
                 <td><b>Modificar</b></td>
                 <td><b>Eliminar</b></td>
-        <?php
+<?php
         mostrarPanelCategorias();
 }
 
