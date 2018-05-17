@@ -1,6 +1,4 @@
-﻿- Implementar administrarcompras.php
-
-- Diseño web..
+﻿- Diseño web..
 
 + Implementar administrarempleados.php
 
