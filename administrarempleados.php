@@ -7,7 +7,11 @@ $keywords = "administrar, empleados, palabras clave, keywords";
 include("funciones.php");
 include("seguridad.php");
 
-//Comprobamos si el usuario editando el cliente tiene permisos de superusuario
+$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
+//acentos
+$con->query("SET NAMES 'utf8'");
+
+//Comprobamos si el usuario tiene permisos de superusuario
 //Para poder modificar los datos de los empleados.
 $sql = "select tipo from usuarios where username='$_SESSION[login_user]'";
 $result = mysqli_query($con, $sql);
@@ -39,10 +43,6 @@ if (isset($_REQUEST['modempleado'])) {
 switch ($option) {
     case 'mod':
     // Mostramos el contenido de modificar un empleado
-        $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-        //acentos
-        $con->query("SET NAMES 'utf8'");
-
         $cNombre = "correcto";
         $cTelefono = "correcto";
         $cEmail = "correcto";
@@ -101,9 +101,12 @@ switch ($option) {
                 echo "<h1>Algunos datos son incorrectos</h1>";
 
             } else { // si todo es correcto modificamos y le indicamos al usuario que todo ha ido correctamente
-                $sql = "UPDATE usuarios SET nombre = '$nombre', telefono = '$telefono', email = '$email' WHERE username = '$username'";
-                mysqli_query($con, $sql);
-                echo "<h1><i>Cambios guardados</i></h1>";
+                $sql = "UPDATE usuarios SET nombre = '$nombre', telefono = '$telefono', email = '$email' WHERE username = '$empleado'";
+                if (mysqli_query($con, $sql)) {
+                    echo "<h1><i>Cambios guardados</i></h1>";
+                } else {
+                    echo "Algo ha fallado en la base de datos";
+                }
             }
         }
 ?>
