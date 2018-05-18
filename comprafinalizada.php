@@ -9,12 +9,12 @@ require("funciones.php");
 //Incluimos seguridad.php
 require("seguridad.php");
 
-if (isset ($_COOKIE["cesta_de_".$username])) {
-
 //Iniciamos con la variable del número de orden en 0
     $numorden = 0;
-
     $username = $_SESSION['login_user'];
+
+if (isset ($_COOKIE["cesta_de_".$username])) {
+
     $con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
     $cliente = $username;
     $codigo = "SELECT * FROM lineapedido WHERE numorden = '1'";
@@ -52,18 +52,15 @@ if (isset ($_COOKIE["cesta_de_".$username])) {
     <p>Pedido realizado correctamente. Gracias por su compra <b> <?php echo $nombre ?></b></p>
     <br>
 
-    <?php
+<?php
 } else {
     include("cabecera.php");
-    ?>
-
-    <h1><?php echo parametro_plantilla("titulo_pagina") ?></h1>
-
+?>
     <br>
-    <p>Parece que ha habido un error, añada de nuevo los artículos al carrito e inténtelo de nuevo<b> <?php echo $nombre ?></b></p>
+    <h1>Parece que ha habido un error, añada de nuevo los artículos al carrito e inténtelo de nuevo<b> <?php echo $nombre ?></b></h1>
     <br>
 
-    <?php
+<?php
 }
 //Por último incluimos el pie
 include("pie.php");
