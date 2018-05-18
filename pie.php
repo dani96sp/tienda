@@ -20,7 +20,5 @@
 </body>
 </html>
 <?php
-error_reporting(0);
-
 mysqli_close($con); // Closing Connection
 ?>
