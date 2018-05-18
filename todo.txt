@@ -4,7 +4,6 @@
 
 + Llamar siempre a index.php pasándole parámetros y dichos parámetros indican que página cargar en la zona principal de la web
 Se ha implementado en algunas páginas como administrararticulos.php y similares pero no veo viable ponerlo en el index.
-- Todavía queda por implementar administrarcompras.php y administrarempleados.php
 
 + "Esta página te ha redirigido demasiadas veces."
 El problema estaba en que cuando había carrito de invitado y logueabas, en seguridad.php te redirecciona a

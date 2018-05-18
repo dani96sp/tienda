@@ -1,7 +1,7 @@
 		<!-- Inicio NavAbajo -->
 		<div id="navabajo">
 		<a href="<?php echo $_SERVER['HTTP_REFERER'] ?>">Volver</a> |
-		<a href="#">Échale un vistazo a mi GitHub</a> |
+		<a href="https://github.com/dani96sp/tienda">Échale un vistazo a mi GitHub</a> |
 		<a href="todo.txt">TODO</a>
 		</div>
 		<!-- Fin NavAbajo -->
@@ -20,5 +20,7 @@
 </body>
 </html>
 <?php
+error_reporting(0);
+
 mysqli_close($con); // Closing Connection
 ?>

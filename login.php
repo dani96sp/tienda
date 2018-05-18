@@ -13,7 +13,7 @@ if (empty($error)){
 <label>Contraseña :</label>
 <input name="password" placeholder="**********" type="password">
 <input name="submit" type="submit" value=" login "><br>
-<span><h3><?php echo $error; ?></h></span>
+<span><h3><?php echo $error; ?></h3></span>
 </form>
 
 		</div>
