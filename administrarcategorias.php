@@ -35,17 +35,17 @@ switch ($option) {
             <form name="formulario" id="formulario" action="administrarcategorias.php?addcategoria" method="post">
 <?php
                 if ($submit) {
-                    //Dejamos los campos en blanco por defecto
-?>
-                    <label for="nombre" id="correcto"><h1>Nombre de la categoría:</h1></label>
-                    <input type="text" name="nombre" id="nombre" maxlength="50"/>
-<?php
-                } else {
                     // Si hay submit se intenta agregar la categoría y comprueba que no exista ya
                     agregarCategoria($_POST['nombre']);
 ?>
                     <label for="nombre" id="correcto"><h1>Nombre de la categoría:</label>
                     <input type="text" name="nombre" id="nombre" maxlength="50" value="<?php echo $_POST['nombre'] ?>"/></h1>
+<?php
+                } else {
+                    //Dejamos los campos en blanco por defecto
+?>
+                    <label for="nombre" id="correcto"><h1>Nombre de la categoría:</h1></label>
+                    <input type="text" name="nombre" id="nombre" maxlength="50"/>
 <?php
                 }
 ?>
