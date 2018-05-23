@@ -261,7 +261,7 @@ function mostrarArticulosPorCategoria(&$orden, &$categoria) {
 		$desplazamiento = $_GET["desplazamiento"];
 	else $desplazamiento = 0;
 	$con = mysqli_connect(HOSTNAME, USER_DB, PASSWORD_DB, DATABASE);
-	$query1 = mysqli_query($con, "select DISTINCT categorias.* from categorias,articulos WHERE categorias.nombre = '$categoria' AND articulos.stock = 'si'");
+	$query1 = mysqli_query($con, "select DISTINCT categorias.* from categorias,articulos WHERE categorias.nombre = '$categoria' AND articulos.id = categorias.articulo AND articulos.stock = 'si'");
 	$total_articulos = mysqli_num_rows($query1);
 	$sql = "SELECT DISTINCT articulos.* FROM articulos,categorias WHERE categorias.nombre = '$categoria' && articulos.id = categorias.articulo AND articulos.stock = 'si' ORDER BY $orden LIMIT $desplazamiento, $num_filas";
 	//acentos
